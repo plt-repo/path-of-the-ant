@@ -39,7 +39,7 @@ def calculate_ant_way(start_position, grid_size):
     :return: Сетка с отмеченными доступными шагами муравья, Кол-во клеток в которые может сходить муравей
     """
     grid = draw_grid(grid_size)
-    ant_available_positions_cnt = 0
+    ant_available_steps_cnt = 0
 
     # Очерёдность шагов для обхода клеток
     steps_queue = [start_position]
@@ -52,7 +52,7 @@ def calculate_ant_way(start_position, grid_size):
             # Клетка доступна, устанавливаем значение 0 в массиве и
             # инкрементируем счётчик кол-ва доступных клеток
             grid[x][y] = 0
-            ant_available_positions_cnt += 1
+            ant_available_steps_cnt += 1
 
             # Добавляем соседние клетки в очередь для дальнейшего обхода
             steps_queue.append((x + 1, y))
@@ -60,7 +60,7 @@ def calculate_ant_way(start_position, grid_size):
             steps_queue.append((x, y + 1))
             steps_queue.append((x, y - 1))
 
-    return grid, ant_available_positions_cnt
+    return grid, ant_available_steps_cnt
 
 
 if __name__ == '__main__':
@@ -69,8 +69,8 @@ if __name__ == '__main__':
     grid_size = 2000
 
     # Вызываем функцию расчёта доступных для муравья клеток
-    _, ant_available_positions_cnt = calculate_ant_way(ant_start_position_x_y, grid_size)
+    _, ant_available_steps_cnt = calculate_ant_way(ant_start_position_x_y, grid_size)
 
     print '*'*30
-    print 'Количество клеток которое может посетить муравей = {0}'.format(ant_available_positions_cnt)
+    print 'Количество клеток которое может посетить муравей = {0}'.format(ant_available_steps_cnt)
     print '*'*30
